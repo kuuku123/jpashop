@@ -1,12 +1,19 @@
 server:
   port : 8084
 
+#spring:
+#  datasource:
+#    url: jdbc:h2:tcp://localhost/D:\H2\jpashop;
+#    username: sa
+#    password:
+#    driver-class-name: org.h2.Driver
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/D:\H2\jpashop;
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
+    url: jdbc:mysql://localhost:3306/tony_jpashop?serverTimezone=UTC&characterEncoding=UTF-8&useSSL=false
+    username: tony
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
 
   jpa:
     hibernate:
@@ -15,6 +22,8 @@ spring:
       hibernate:
         show_sql: true
         format_sql: true
+    database: mysql
+    databse-platform: org.hibernate.dialect.MySQL5InnoDBDialect
 logging:
   level:
     org.hibernate.SQL: debug
