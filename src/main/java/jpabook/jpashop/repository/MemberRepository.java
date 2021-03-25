@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 @RequiredArgsConstructor
@@ -27,7 +28,8 @@ public class MemberRepository
     public List<Member> findAll()
     {
         return em.createQuery("select m from Member m", Member.class)
-                .getResultList();
+                .getResultStream()
+                .collect(Collectors.toList());
     }
 
     public List<Member> findByName(String name)
