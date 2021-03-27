@@ -1,16 +1,16 @@
 package jpabook.jpashop.service;
 
-import jpabook.jpashop.domain.Delivery;
+import jpabook.jpashop.domain.*;
 import jpabook.jpashop.domain.Item.Item;
-import jpabook.jpashop.domain.Member;
-import jpabook.jpashop.domain.Order;
-import jpabook.jpashop.domain.OrderItem;
 import jpabook.jpashop.repository.ItemRepository;
 import jpabook.jpashop.repository.MemberRepository;
 import jpabook.jpashop.repository.OrderRepository;
+import jpabook.jpashop.repository.OrderSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -34,6 +34,7 @@ public class OrderService
         //create delivery information
         Delivery delivery = new Delivery();
         delivery.setAddress(member.getAddress());// actual would be different customer need to write where they want to send
+        delivery.setDeliveryStatus(DeliveryStatus.READY);
 
         //create orderitem
         OrderItem orderItem = OrderItem.createOrderItem(item, item.getPrice(), orderCount);
@@ -58,6 +59,10 @@ public class OrderService
 
         //cancel order
         order.cancel();
+    }
 
+    public List<Order> findOrders(OrderSearch orderSearch)
+    {
+        return orderRepository.findAll(orderSearch);
     }
 }

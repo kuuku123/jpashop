@@ -38,7 +38,7 @@ public class OrderRepository
 
       if (orderSearch.getOrderStatus() != null)
       {
-        Predicate status = cb.equal(o.get("status"),orderSearch.getOrderStatus());
+        Predicate status = cb.equal(o.get("orderStatus"),orderSearch.getOrderStatus());
         criteria.add(status);
       }
 
@@ -53,4 +53,5 @@ public class OrderRepository
       return query.getResultList();
 
    }
+
 }
