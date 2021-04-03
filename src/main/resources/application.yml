@@ -24,6 +24,6 @@ spring:
         format_sql: true
     database: mysql
     databse-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-logging:
-  level:
-    org.hibernate.SQL: debug
+#logging:
+#  level:
+#    org.hibernate.SQL: debug
